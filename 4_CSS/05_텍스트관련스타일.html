@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="ko">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>글꼴관련스타일</title>
+    <style>
+        #c{
+            color: red;
+            background-color: #880000;
+            color: rgb(0,0,0); /*각 값의 최대치는 255*/
+            color: rgba(128, 128, 255, 1); /*rgb는 255, a는 1이 최대치*/
+        }
+        #td1{text-decoration: underline;}
+        #td2{text-decoration: line-through;}
+        #td3{text-decoration: overline;}
+    </style>
+</head>
+<body>
+    <h1>텍스트 관련 스타일(text~)</h1>
+
+    <h2>color : 텍스트 색상을 지정</h2>
+    <pre id="c">
+        선택자{
+            color: 색상명 | 16진수 | rgb(x,x,x) | rgba(x,x,x,x)
+        }
+    </pre>
+
+    <h2>text-decoration : 텍스트에 줄을 긋거나 줄을 없앨 때 사용</h2>
+    <pre>
+        선택자{
+            text-decoration: none | underline | overline | lice-through;
+        }
+    </pre>
+    <ul>
+        <li id="td1">텍스트영역 아래 줄 긋기</li>
+        <li id="td2">텍스트영역 중간에 줄 긋기</li>
+        <li id="td3">텍스트영역 위에 줄 긋기</li>
+    </ul>
+
+    <a href="https://www.naver.com" target="_blank" style="text-decoration: none;">네이버로</a>
+
+    <hr>
+
+    <h3>text-align : 텍스트 정렬할 때 사용</h3>
+    <pre>
+        선택자{
+            text-align: left(기본값) | right | center | justify
+        }
+    </pre>
+
+    <h4>왼쪽정렬(기본값)</h4>
+    <p style="text-align: left;">(디지털컨버전스) 공공데이터 활용 JAVA개발자 양성과정 2024 , 01, 09 ~ 2024 , 06, 24 (09:00 ~ 18:00) 강남 i강의장 최지원 강사</p>
+
+    <h4>양쪽정렬</h4>
+    <p style="text-align: justify;">(디지털컨버전스) 공공데이터 활용 JAVA개발자 양성과정 2024 , 01, 09 ~ 2024 , 06, 24 (09:00 ~ 18:00) 강남 i강의장 최지원 강사</p>
+
+    <h4>중앙정렬</h4>
+    <p style="text-align: center;">(디지털컨버전스) 공공데이터 활용 JAVA개발자 양성과정 2024 , 01, 09 ~ 2024 , 06, 24 (09:00 ~ 18:00) 강남 i강의장 최지원 강사</p>
+
+    <h4>오른쪽정렬</h4>
+    <p style="text-align: right;">(디지털컨버전스) 공공데이터 활용 JAVA개발자 양성과정 2024 , 01, 09 ~ 2024 , 06, 24 (09:00 ~ 18:00) 강남 i강의장 최지원 강사</p>
+
+    <hr>
+
+    <h3>line-height : 줄 간격 조절할 때 사용</h3>
+    <pre>
+        선택자{
+            line-height: normal | px | em | %
+        }
+    </pre>
+
+    <h4>px 고정 단위 간격</h4>
+    <p style="line-height: 30px;">(디지털컨버전스) 공공데이터 활용 JAVA개발자 양성과정 2024 , 01, 09 ~ 2024 , 06, 24 (09:00 ~ 18:00) 강남 i강의장 최지원 강사</p>
+</body>
+</html>

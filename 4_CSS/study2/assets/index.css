@@ -1,0 +1,205 @@
+#wrapper{
+    box-sizing: border-box;
+    width: 1020px;
+    height: max-content;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* 헤더 */
+#header{
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c0c0c0;
+}
+#header-logo{
+    width: 100%;
+    height: 60px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+}
+#search_form{
+    margin: auto;
+    width: 400px;
+    height: 30px;
+    position: absolute;
+    display: inline-flex;
+    left: 0;
+    right: 0;
+    top: 55px;
+}
+#search_form>input{
+    width: 75%;
+    height: 24px;
+}
+#search_form>button{
+    width: 25%;
+    background-color: #ffffff;
+    border: 1px solid;
+    height: 30px;
+}
+button>img{
+    height: 25px;
+}
+
+/* 메뉴바 */
+#navigator{
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c0c0c0;
+    display: flex;
+    justify-content: space-around;
+}
+#navigator>a{
+    text-decoration: none;
+    color: grey;
+    font-size: 16px;
+    font-weight: 900;
+    margin: auto;
+}
+
+/* 사이드 */
+#side{
+    width: 100%;
+    height: 500px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+#side_left{
+    width: 70%;
+    height: 100%;
+    margin-right: 10px;
+}
+#banner_1{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid #c0c0c0;
+}
+#banner_1>img{
+    width: 100%;
+    height: 100px;
+}
+#notice{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c0c0c0;
+}
+#notice>p{
+    float: left;
+    font-size: 16px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+#notice_link{
+    float: right;
+    margin-top: 15px;
+}
+#notice_link>a{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    margin-right: 10px;
+}
+#banner_2{
+    width: 100%;
+    height: 325px;
+    margin-top: 10px;
+    border: 1px solid #c0c0c0;
+}
+#banner_2>img{
+    width: 100%;
+    height: 100%;
+}
+
+#side_right{
+    width: 30%;
+    height: 100%;
+}
+
+#login{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid #c0c0c0;
+}
+
+#login_form{width: 100%; height: 100%;}
+#login_form>*{width: 100%;}
+#login_form_input{height: 75%;}
+#login_form_etc{height: 25%; text-align: center;}
+#login_form_input>*{height: 100%;}
+#login_input_id_pwd{width: 65%; float: left;}
+#login_input_button{width: 35%; float: right;}
+#login_form_etc>a{
+    text-decoration: none;
+    color: black;
+    font-size: 13px;
+    font-weight: 900;
+    margin: 10px;
+    vertical-align: middle;
+}
+#login_input_id_pwd>input{
+    width: 100%;
+    height: 50%;
+    box-sizing: border-box;
+}
+#login_input_button>input{
+    width: 100%;
+    height: 100%;
+}
+#banner_3{
+    width: 100%;
+    height: 385px;
+    margin-top: 10px;
+    border: 1px solid #c0c0c0;
+}
+#banner_3>img{
+    width: 100%;
+    height: 100%;
+}
+
+/* 푸터 */
+#footer{
+    width: 100%;
+    height: 190px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c0c0c0;
+}
+#footer_1{
+    height: 50px;
+    margin: 10px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
+    font-weight: 800;
+}
+#footer_1>a{
+    text-decoration: none;
+    color: black;
+}
+#footer_2>p:nth-child(1){
+    width: 100%;
+    margin: 10px;
+    margin-left: 20px;
+    font-size: 16px;
+}
+#footer_2>p:nth-child(2){
+    font-size: 16px;
+    text-align: center;
+}

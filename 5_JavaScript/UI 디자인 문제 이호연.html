@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+</head>
+<body>
+    <style>
+        #notice th{
+            background: rgb(255, 160, 122); color: white;
+        }
+        #notice td{
+            background: rgb(255, 255, 224);
+        }
+        button{
+            width: 75px;
+        }
+        #noticeTitle{
+            width: 405px;
+        }
+        #topLine>th{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
+</body>
+    <h1>포트폴리오 문제</h1>
+    <form action="insert.no" method="post">
+        <fieldset style="width: 770px;">
+            <legend>공지사항 작성하기</legend>
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td><input type="text" name="title" placeholder="제목을 입력하시오" style="width: 250px;"></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td><textarea name="content" cols="30" rows="10" style="width: 252px; height: 120px; resize: none;"  placeholder="내용을 입력하시오."></textarea></td>
+                </tr>
+                <tr>
+                    <th>첨부파일</th>
+                    <td><input type="file" name="uploadFile"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; padding-top: 15px;" colspan="2"><input type="submit" value="작성하기"></td>
+                </tr>
+            </table>
+                
+            
+            </div>
+            
+        </fieldset>
+    </form>
+<br>
+    <hr>
+<br>
+    <table border="1px" id="notice">
+        <tr id="topLine">
+            <th>번호</th>
+            <th colspan="2" style="width: 480px;">제목</th>
+            <th style="width: 105px;">작성자</th>
+            <th style="width: 105px;">작성일</th>
+            <th>조회수</th>
+        </tr>
+        <tr id="boardLine">
+            <td>9</td>
+            <td id="noticeTitle">공지사항 제목 9</td>
+            <td><button>바로가기</button></td>
+            <td>user01</td>
+            <td>2021-03-29</td>
+            <td>34</td>
+        </tr>
+        <tr id="boardLine">
+            <td>6</td>
+            <td id="noticeTitle">공지사항 제목 6</td>
+            <td><button>바로가기</button></td>
+            <td>answ445</td>
+            <td>2021-03-12</td>
+            <td>67</td>
+        </tr>
+        <tr id="boardLine">
+            <td>3</td>
+            <td id="noticeTitle">공지사항 제목 3</td>
+            <td><button>바로가기</button></td>
+            <td>testg12</td>
+            <td>2021-03-01</td>
+            <td>34</td>
+        </tr>
+        <tr id="boardLine">
+            <td>2</td>
+            <td id="noticeTitle">공지사항 제목 2</td>
+            <td><button>바로가기</button></td>
+            <td>palwe3</td>
+            <td>2021-01-02</td>
+            <td>34</td>
+        </tr>
+        <tr id="boardLine">
+            <td>1</td>
+            <td id="noticeTitle">공지사항 제목 1</td>
+            <td><button>바로가기</button></td>
+            <td>xml23</td>
+            <td>2020-12-24</td>
+            <td>124</td>
+        </tr>
+        <tr>
+            <th colspan="4">전체공지사항 갯수</th>
+            <th colspan="2">5개</th>
+        </tr>
+    </table>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        #table_background{
+            display: flex;
+            justify-content: center;
+            width: 560px;
+            height: 370px;
+            background-color:rgb(222, 235, 247);
+        }
+        table{
+            margin: auto;
+            padding: 8px;
+            padding-top: 35px;
+            border: 2px solid rgb(215, 220, 224);
+            width: 300px;
+            height: 315px;
+            background-color: rgb(237, 237, 237);
+        }
+        input{     
+            display: flex;
+            flex-direction: row;
+        }
+        #title{
+            width: 83px;
+        }
+        #email{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #email1, #email2{
+            width: 41%;
+        }
+        input{
+            border: 0px;
+            border-bottom: 2px dashed;
+            background-color: rgb(237, 237, 237);
+        }
+        #submit{
+            text-align: center;
+        }
+        button{
+            width: 100%;
+            height: 100%;
+            border: 0px;
+            background-color: rgb(197, 224, 180);
+        }
+    </style>
+</head>
+<body>
+    <div id="table_background">
+        <table>
+            <tr>
+                <td id="title" style="font-size: 13px;"><b>아이디</b></td>
+                <td><input type="text" id="inputid"><div id="checkid" style="font-size: 10px; font-weight: 700;"></div></td>
+            </tr>
+            <tr>
+                <td id="title" style="font-size: 13px;"><b>패스워드</b></td>
+                <td><input type="password" id="inputpwd" onkeyup="notblank();"><div id="checkpwd" style="font-size: 10px; font-weight: 700;"></div></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td id="attension" style="font-size: 8px; color: rgb(237, 237, 237)">영문자 대/소문자 특수문자, 숫자 포함 8~32자</td>
+            </tr>
+            <tr>
+                <td id="title" style="font-size: 13px;"><b>패스워드 확인</b></td>
+                <td><input type="password" id="inputagain"><div id="checkagain" style="font-size: 10px; font-weight: 700;"></div></td>
+            </tr>
+            <tr>
+                <td id="title" style="font-size: 13px;"><b>이메일</b></td>
+                <td id="email"><input type="text" id="email1">
+                    @
+                    <input type="text" id="email2"></td>
+            </tr>
+            <tr>
+                <td id="title" style="font-size: 13px;"><b>주소</b></td>
+                <td><input type="text" id="address1"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" id="address2"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 40px;" id="submit"><button><b>가 입</b></button></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        const inputid = document.querySelector("#inputid");
+        const inputpwd = document.querySelector("#inputpwd");
+        const inputagain = document.querySelector("#inputagain");
+        const email1 = document.querySelector("#email1");
+        const email2 = document.querySelector("#email2");
+        const address1 = document.querySelector("#address1");
+        const address2 = document.querySelector("#address2");
+        
+        const attension = document.getElementById("attension");
+
+        const checkid = document.querySelector("#checkid");
+        const checkpwd = document.querySelector("#checkpwd");
+        const checkagain = document.querySelector("#checkagain");
+
+        inputpwd.onfocus = function() {
+            if (inputpwd.value == ""){
+                attension.style.color = "black";
+            }
+            if (inputid.value == ""){
+                checkid.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+        }
+        function notblank(){
+            if (inputpwd.value == ""){
+                attension.style.color = "black";
+            } else {
+                attension.style.color = "rgb(237, 237, 237)";
+            }
+        }
+        inputpwd.onblur = function() {
+            attension.style.color = "rgb(237, 237, 237)";
+            checkid.innerHTML = "";
+        }
+
+        inputagain.onfocus = function() {
+            if (inputid.value == ""){
+                checkid.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputpwd.value == ""){
+                checkpwd.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+        }
+        inputagain.onblur = function() {
+            checkid.innerHTML = "";
+            checkpwd.innerHTML = "";
+        }
+
+        email1.onfocus = function() {
+            if (inputid.value == ""){
+                checkid.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputpwd.value == ""){
+                checkpwd.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputagain.value == ""){
+                checkagain.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+        }
+        email1.onblur = function() {
+            checkid.innerHTML = "";
+            checkpwd.innerHTML = "";
+            checkagain.innerHTML = "";
+        }
+        email2.onfocus = function() {
+            if (inputid.value == ""){
+                checkid.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputpwd.value == ""){
+                checkpwd.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputagain.value == ""){
+                checkagain.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+        }
+        email2.onblur = function() {
+            checkid.innerHTML = "";
+            checkpwd.innerHTML = "";
+            checkagain.innerHTML = "";
+        }
+
+        address1.onfocus = function() {
+            if (inputid.value == ""){
+                checkid.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputpwd.value == ""){
+                checkpwd.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputagain.value == ""){
+                checkagain.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+        }
+        address1.onblur = function() {
+            checkid.innerHTML = "";
+            checkpwd.innerHTML = "";
+            checkagain.innerHTML = "";
+        }
+
+        address2.onfocus = function() {
+            if (inputid.value == ""){
+                checkid.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputpwd.value == ""){
+                checkpwd.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+            if (inputagain.value == ""){
+                checkagain.innerHTML = "<br> 필수 입력 항목 입니다";
+            }
+        }
+        address2.onblur = function() {
+            checkid.innerHTML = "";
+            checkpwd.innerHTML = "";
+            checkagain.innerHTML = "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>jQuery2</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 300px;
+            height: 300px;
+        }
+        .qa_box > div{
+            background: beige;
+            border: 1px solid lavenderblush;
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .qa_box > p{
+            display: none;
+            border: 1px solid whitesmoke;
+            width: 300px;
+            height: 100px;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery</h1>
+
+    <h3>jQuery이벤트</h3>
+    <div class="area" id="wrap">
+        <h6>클릭시 h6요소 추가</h6>
+    </div>
+
+    <script>
+        //방법1 이벤트 메소드 => 동적으로 만들어진 요소에 이벤트 적용 안 됨
+        // $("#wrap > h6").click(function(){
+        //     $("#wrap").append("<h6>클릭시 생성된 h6</h6>");
+        // })
+
+        //방법2 on메소드
+        $("#wrap > h6").on("click", function(){
+            $("#wrap").append("<h6>클릭시 생성된 h6</h6>");
+        })
+
+        //방법3 $("부모요소").on(이벤트명, 자식요소, 실행할 함수)
+        $("#wrap").on("click", "h6", function(){
+            $("#wrap").append("<h6>클릭시 생성된 h6</h6>");
+        })
+    </script>
+
+    <hr>
+    <h2>시각적인 효과(Effect 메소드)</h2>
+    <p>페이지 내에 애니메이션 효과를 주기 위해 사용되는 메소드</p>
+
+    <h3>* show, hide, toggle</h3>
+    <p>선택된 요소가 점점 커지면서 보여지고, 점점 작아지면서 사라지게 만드는 메소드</p>
+
+    <button id="show_btn">보여주기</button>
+    <button id="hide_btn">숨기기</button>
+    <button id="toggle_btn">토글</button>
+    <br><br>
+    <img id="hideandshowImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEZtZMNwvjBSStEL7WWXDNZXXet6sUaJagU9Shctoxv4Oq6i8rnStbv9vv60DFns_zW34&usqp=CAU" alt="">
+
+    <script>
+        $("#show_btn").click(function(){
+            $("#hideandshowImg").show(500);
+        })
+        
+        $("#hide_btn").click(function(){
+            $("#hideandshowImg").hide(500);
+        })
+        
+        $("#toggle_btn").click(function(){
+            $("#hideandshowImg").toggle(500);
+        })
+    </script>
+
+    <h3>fadeIn, fadeOut, fadeToggle</h3>
+    <p>선택된 요소가 점점 투명해지면서 사라지거나 보이게 만드는 메소드</p>
+    <button id="fadeIn_btn">보여주기</button>
+    <button id="fadeOut_btn">숨기기</button>
+    <button id="fadeToggle_btn">토글</button>
+    <br><br>
+    <img id="fadeImg" src="https://hedwig-cf.netmarble.com/forum-common/nanakr/7ds/thumbnail/3b08f6baad644e0d850c72b4a81d7129_1668434806837_d.jpg" alt="">
+
+    <script>
+        $("#fadeIn_btn").click(function(){
+            $("#fadeImg").fadeIn(500);
+        })
+        
+        $("#fadeOut_btn").click(function(){
+            $("#fadeImg").fadeOut(500);
+        })
+        
+        $("#fadeToggle_btn").click(function(){
+            $("#fadeImg").fadeToggle(500);
+        })
+    </script>
+
+    <h3>* slideDown()과 slideUp()</h3>
+    <div class="qa_box">
+        <div>Q. 아래가 허전한데요?</div>
+        <p>A. 총알이 영 좋지 못한 곳에 맞았습니다</p>
+
+        <div>Q. 제비의 비행속도는?</div>
+        <p>A. 무슨 제비? 아프리카제비? 유럽제비?</p>
+        
+        <div>Q. 이것도 계산대로냐 죠죠</div>
+        <p>A. 당연하지! 처음부터 끝까지 이 죠죠의 계산대로였다고!</p>
+    </div>
+    <script>
+        $(".qa_box > div").click(function(){
+            //this => 클릭 이벤트가 발생한 요소
+            //$(this).next() => 선택된 요소의 뒤에 있는 요소
+            
+            const $p = $(this).next() //$를 붙여서 jQuery요소임을 명시
+
+            if($p.css("display") === "none"){
+                $(".qa_box > p").slideUp(); //답변 하나만 나타나는 것처럼 보이도록 모든 답변 부분을 슬라이드 업
+                $p.slideDown();
+            } else {
+                $p.slideUp();
+            }
+        })
+    </script>
+</body>
+</html>

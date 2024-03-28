@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Practice02</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        #calculator{
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            align-items: center;
+        }
+        .number{
+            width: 100px;
+
+        }
+        .area{
+            width: 100px;
+            height: 20px;
+            border: 1px solid black;
+        }
+        button{
+            width: 25px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <input type="number" class="number" id="Num1st">
+        <select name="연산" id="cal">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="number" class="number" id="Num2nd">
+        <button onclick="Calculate()">=</button>
+        <div id="result" class="area"></div>
+    </div>
+
+    <script>
+        function Calculate(){
+            let num1 = document.getElementById("Num1st").value;
+            let num2 = document.getElementById("Num2nd").value;
+            let cal = document.getElementById("cal");
+
+            console.log(cal.value);
+
+            switch(cal.value){
+                case '+':
+                    calresult = (Number(num1) + Number(num2));
+                    break;
+                case '-':
+                    calresult = (Number(num1) - Number(num2));
+                    break;
+                case '*':
+                    calresult = (Number(num1) * Number(num2));
+                    break;
+                case '/':
+                    if (num2 == 0){
+                        calresult = "연산불가"
+                    } else {
+                        calresult = (Number(num1) / Number(num2));
+                    }
+                    break;
+                case '%':
+                    if (num2 == 0){
+                        calresult = "연산불가"
+                    } else {
+                        calresult = (Number(num1) % Number(num2));
+                    }
+                    break;
+            }
+            console.log(calresult, calresult.value);
+
+            let area = document.getElementById("result");
+            
+            if (calresult == "연산불가"){
+                area.style.fontSize = 15 + "px";
+                area.style.background = "red";
+                area.style.color = "white";
+            } else {
+                area.style.fontSize = 15 + "px";
+                area.style.background = "white";
+                area.style.color = "black";
+            }
+            area.innerHTML = calresult;
+        }
+    </script>
+</body>
+</html>

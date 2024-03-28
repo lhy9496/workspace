@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: #0f0f0f;
+    font-family: "Noto Sans KR", sans-serif;
+    padding-top: 60px;
+}
+
+div{
+    box-sizing: border-box;
+}
+
+p{
+    margin: 0px;
+}

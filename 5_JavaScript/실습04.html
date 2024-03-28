@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset='utf-8'>
+    <title>Practice4</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .result{
+            border: 1px solid black;
+            width: 350px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>구매 정보</legend>
+        <li>구매자 : <input type="text" id="buyer" placeholder="구매자의 이름을 입력하세요"></li>
+        <li>상품명 : <input type="text" id="product" placeholder="구매 상품 명을 입력하세요"></li>
+        <li>가격 : <input type="text" id="price" placeholder="구매 가격을 입력하세요"></li>
+        <li>구매 수량 : <input type="number" id="unit" min="10" max="100" step="10" placeholder="최소 10."></li>
+        <li>납품 등급 : <input type="range" id="rank" min="1" max="9" step="2" value="1"></li>
+        <li>기타 사항 : <textarea id="etc" cols="30" rows="5"></textarea></li>
+    </fieldset>
+    <br>
+    <button onclick="printResult();">입력 값 출력하기</button>
+    <br><br>
+    <div class="result" id="areaResult"></div>
+        <script>
+            function printResult(){
+                const buyer = document.getElementById("buyer");
+                const product = document.getElementById("product");
+                const price = document.getElementById("price");
+                const unit = document.getElementById("unit");
+                const rank = document.getElementById("rank");
+                const etc = document.getElementById("etc");
+
+                let result = document.getElementById("areaResult");
+                result.innerHTML = "구매자 명 : " + buyer.value + "님<br>" +
+                                    "상품 명 : " + product.value + "<br>" +
+                                    "가격 : " + price.value + "만원<br>" +
+                                    "구매 수량 : "+ unit.value + "개<br>" +
+                                    "납품등급 : "+ rank.value + "등급<br>" +
+                                    "기타사항 : "+ etc.value + "<br>";
+            }
+        </script>
+    
+</body>
+</html>

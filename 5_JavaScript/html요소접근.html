@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Html태그에 접근하기</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        div{
+            border: 1px solid black;
+            background: black;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h3>문제 1. 색상 선택 후 변경 버튼을 클릭하면 색상이 변경되도록 만들기</h3>
+    <div id="div1"></div>
+    <input type="color" id="selectColor"> <!--가져와서 밸류 확인해보기-->
+    <button onclick="colorChange()">변경</button> <!-- 클릭됐을 때 위의 밸류를 가져와서 div1의 배경 변경-->
+
+    <script>
+        function colorChange(){
+            const color = document.querySelector('#selectColor');
+            console.log(color.value);
+
+            div1.style.background = color.value;
+        }
+    </script>
+
+    <hr><br><br>
+    <h3>문제 2. 버튼에 따른 크기조절이 가능하게 만들어보기</h3>
+    <div id="div2"></div>
+    <button onclick="size50()">50x50</button>
+    <button onclick="size100()">100x100</button>
+    <button onclick="size200()">200x200</button>
+
+    <script>
+        function size50(){
+            div2.style.width = '50px';
+            div2.style.height = '50px';
+        }
+        function size100(){
+            div2.style.width = '100px';
+            div2.style.height = '100px';
+        }
+        function size200(){
+            div2.style.width = '200px';
+            div2.style.height = '200px';
+        }
+    </script>
+
+<hr><br><br>
+<h3>문제 2. 버튼에 따른 크기조절이 가능하게 만들어보기(풀이2)</h3>
+<div id="div2b"></div>
+<button onclick="resize(50, 50)">50x50</button>
+<button onclick="resize(100, 100)">100x100</button>
+<button onclick="resize(200, 200)">200x200</button>
+
+<script>
+    function resize(width, height){
+        div2b.style.width = width +'px';
+        div2b.style.height = height + 'px';
+    }
+    
+</script>
+</body>
+</html>

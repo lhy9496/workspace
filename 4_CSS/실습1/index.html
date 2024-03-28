@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>실습 페이지</title>
+    
+    <!-- 폰트 링크 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 각 파트 별 css -->
+    <link rel="stylesheet" href="./style/index.css">
+    <link rel="stylesheet" href="./style/header.css">
+    <link rel="stylesheet" href="./style/sidebar.css">
+    <link rel="stylesheet" href="./style/video.css">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="left-section">
+            <img class="hamburger-menu" src="assets/icons/hamburger-menu.svg" alt="메뉴버튼">
+            <img class="youtube-logo" src="assets/icons/youtube-logo.svg" alt="유튜브로고">
+        </div>
+        <div class="middle-section">
+            <input class="search-bar" type="text" placeholder="검색">
+            <button class="search-button">
+                <img src="assets/icons/search.svg" alt="검색버튼">
+                <div class="tooltip">검색</div>
+            </button>
+            <button class="voice-search-button">
+                <img src="assets/icons/voice-search-icon.svg" alt="음성인식버튼">
+                <div class="tooltip">음성으로 검색</div>
+            </button>
+        </div> 
+        <div class="right-section">
+            <div class="upload-icon-container">
+                <img src="assets/icons/upload.svg" alt="업로드버튼">
+                <div class="tooltip">동영상 업로드</div>
+            </div>
+            <div class="notifications-icon-container">
+                <img src="assets/icons/notifications.svg" alt="알림버튼">
+                <div class="notifications-count">8</div>
+                <div class="tooltip">알림</div>
+            </div>
+            <img class="current-user-picture" src="assets/images/avatars/avatar-1.png" alt="유저프로필">
+        </div>
+    </header>
+    
+    <!-- 내비 -->
+    <nav class="sidebar">
+        <div class="sidebar-link">
+            <img src="assets/icons/home.svg" alt="홈버튼">
+            <div>홈</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="assets/icons/originals.svg" alt="Shorts버튼">
+            <div>shorts</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="assets/icons/subscriptions.svg" alt="구독버튼">
+            <div>구독</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="assets/icons/library.svg" alt="나버튼">
+            <div>나</div>
+        </div>
+    </nav>
+    <!-- 메인 -->
+    <main>
+        <section class="video-grid">
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="assets/images/thumbnails101.jpg" alt="썸네일">
+                    <div class="video-time">
+                        17:09
+                    </div>
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img src="assets/images/avatars/channels4_profile.jpg" alt="채널 프사">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            모두가 원하던 배틀그라운드ㄷㄷ!! 드디어 대격변의 때...
+                        </p>
+                        <p class="video-author">
+                            악동 김블루
+                        </p>
+                        <p class="video-state">
+                            조회수 2.5만 &#183; 3시간 전
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영역관련태그</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+        span{
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <b>asdfqwerasdfasdfasdfasdf</b>asdfqwerfdasasdf
+    <!--
+        블럭요소 : 한 줄 단위로 영역을 차지
+                  줄바꿈이 적용되어 이미 존재하는 태그의 다음 줄에 다음 영역이 잡힘
+                  (p, pre, "div", ...)
+        인라인요소 : content(내용) 영역에 해당하는 부분만 영역을 차지하는 요소
+                  줄바꿈이 적용되지 않아 다음 영역이 바로 옆으로 잡힘
+                  (b, mark, s, img, "span", ...)
+    -->
+
+    <h1>영역관련태그</h1>
+    <h2>div태그와 span 태그의 차이점 1 : 줄바꿈 적용</h2>
+
+    <h3>div태그</h3>
+    <p>div태그는 블럭요소로 한 줄 단위로 영역을 차지(이미 존재하는 태그 다음줄에 영역이 잡힘)</p>
+    <div style="background: red;">첫번째 영역</div>
+    <div style="background: blue;">두번째 영역</div>
+    <div style="background: greenyellow;">세번째 영역</div>
+
+    <h3>span태그</h3>
+    <p>span태그는 인라인 요소로 content 영역만 차지(줄바꿈 없이 옆으로 영역이 잡힘)</p>
+    <span style="background: magenta;">첫번째 영역</span>
+    <span style="background: cyan;">두번째 영역</span>
+    <span style="background: yellow;">세번째 영역</span>
+
+    <h2>div태그와 span 태그의 차이점 2 : 영역지정 방식</h2>
+
+    <h3>div태그: 사각형 박스로 영역을 지정</h3>
+    <div>
+        쿼리에 문제가 있을 수 있습니다. 제가 확인한 결과 SUBSTR(EMP_NO, 1, 6)에서 생년월일 부분을 추출하는 것 같은데, 이 부분에서 날짜 형식이 'YYYY:MM:DD'로 지정되어 있습니다. 그러나 일반적인 날짜 형식은 'YYYYMMDD'입니다. 이러한 형식이 아니라면 TO_DATE 함수로 변환하는 것이 올바릅니다.
+    </div>
+
+    <h3>span태그: 문장단위로 영역을 지정</h3>
+    <span>
+        쿼리에 문제가 있을 수 있습니다. 제가 확인한 결과 SUBSTR(EMP_NO, 1, 6)에서 생년월일 부분을 추출하는 것 같은데, 이 부분에서 날짜 형식이 'YYYY:MM:DD'로 지정되어 있습니다. 그러나 일반적인 날짜 형식은 'YYYYMMDD'입니다. 이러한 형식이 아니라면 TO_DATE 함수로 변환하는 것이 올바릅니다.
+    </span>
+
+    <h1>iframe</h1>
+    <p>웹 문서 안에 다른 웹페이지를 추가하는 태그(인라인요소</p>
+
+    <iframe src="04_이미지및멀티미디어태그.html" width="600" height="800"></iframe>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/p2fxv3PAtLU?si=NbKPwUekNjuvXjMt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</body>
+</html>
