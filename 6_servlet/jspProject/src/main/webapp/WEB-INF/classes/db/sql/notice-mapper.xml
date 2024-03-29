@@ -12,4 +12,24 @@
 	 WHERE N.STATUS = 'Y'
 	 ORDER BY NOTICE_NO DESC
 	</entry>
+	
+	<entry key="insertNotice">
+	INSERT INTO NOTICE
+		VALUES(
+			SEQ_NNO.NEXTNAL,
+		,	?
+		,	?
+		,	?
+		,	0
+		,	SYSDATE
+		,	Y
+		)
+	</entry>
+	
+	<entry key="increaseCount">
+	UPDATE NOTICE
+	SET COUNT = COUNT + 1
+	WHERE NOTICE_NO = ?
+	AND STATUS = 'Y'
+	</entry>
 </properties>

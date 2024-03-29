@@ -71,5 +71,27 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        // const trList = document.querySelector(".list-area > tbody > tr");
+
+        // for(const tr of trList){
+        //     tr.onclick = function(ev){
+        //         url /kh/detail.no
+        //         const noticeNo = this.children[0].innerText;
+
+        //         console.loh(noticeNo)
+
+        //         location.href = "<%=contextPath%>/detail.no?num=" + noticeNo;
+        //     }
+        // }
+
+        $(function(){
+            $(".list-area > tbody > tr").click(function(){
+                const noticeNo = $(this).children().eq(0).text();
+                location.href = "<%=contextPath%>/detail.no?num=" + noticeNo;
+            })
+        })
+    </script>
 </body>
 </html>
