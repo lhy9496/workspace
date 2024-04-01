@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.notice.model.vo.Notice;
+import com.kh.notice.service.NoticeService;
+
 /**
- * Servlet implementation class NoticeEnrollController
+ * Servlet implementation class NoticeUpdateController
  */
-@WebServlet("/enroll.no")
-public class NoticeEnrollController extends HttpServlet {
+@WebServlet("/updateForm.no")
+public class NoticeUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeEnrollController() {
+    public NoticeUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +29,15 @@ public class NoticeEnrollController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/notice/noticeEnrollForm.jsp").forward(request, response);
+		//전달받은 데이터 추출
+		int noticeNo = Integer.parseInt(request.getParameter("num")); // int는 Integer.parseInt(request.getParameter())로 추출해온다. 
+				
+		//데이터베이스로부터 원하는 정보 가져오기
+		Notice n = new NoticeService().selectNotice(noticeNo);
+		
+		//페이지 리턴
+		request.setAttribute("notice", n);
+		request.getRequestDispatcher("views/notice/noticeUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

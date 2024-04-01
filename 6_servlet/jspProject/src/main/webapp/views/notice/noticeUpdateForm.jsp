@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.notice.model.vo.Notice" %>
+<%
+    Notice n = (Notice)request.getAttribute("notice");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +18,10 @@
         margin-top: 50px;
     }
 
-    #enroll-form table{
+    #update-form table{
         border: 1px solid white;
     }
-    #enroll-form input, #enroll-form textarea{
+    #update-form input, #update-form textarea{
         width: 100%;
         box-sizing: border-box;
     }
@@ -29,14 +32,15 @@
 
     <div class="outer" align="center">
         <br>
-        <h2 align="center">공지사항 작성하기</h2>
+        <h2 align="center">공지사항 수정하기</h2>
         <br>
 
-        <form action="<%=contextPath %>/insert.no" id="enroll-form" method="POST">
+        <form action="<%=contextPath %>/update.no" id="update-form" method="POST">
+        	<input type="hidden" name="num" value="<%=n.getNoticeNo()%>">
             <table>
                 <tr>
                     <th width="50">제목</th>
-                    <td width="450"><input type="text" name="title" required></td>
+                    <td width="450"><input type="text" name="title" required value="<%=n.getNoticeTitle()%>"></td>
                 </tr>
                 <tr>
                     <th>내용</th>
@@ -44,14 +48,13 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <textarea name="content" rows="10" style="resize:none;"></textarea>
+                        <textarea name="content" rows="10" style="resize:none;"><%=n.getNoticeContent()%></textarea>
                     </td>
                 </tr>
             </table>
             <br><br>
             <div align="center">
-                <button type="submit">등록하기</button>
-                <button type="reset">초기화</button>
+                <button type="submit">수정하기</button>
                 <button type="button" onclick="history.back">뒤로가기</button>
             </div>
         </form>

@@ -39,7 +39,7 @@
         <% if( loginUser != null && loginUser.getUserId().equals("admin")){%>
             <!-- 현재 로그인한 사용자가 관리자일 때 -->
             <div align="right" style="width: 850px; margin-bottom: 4px;">
-                <a href="" class="btn btn-sm btn-secondary">글쓰기</a>
+                <a href="<%=contextPath %>/enroll.no" class="btn btn-sm btn-secondary">글쓰기</a>
             </div>
         <%}%>
         <table class="list-area" align="center">
@@ -76,14 +76,14 @@
         // const trList = document.querySelector(".list-area > tbody > tr");
 
         // for(const tr of trList){
-        //     tr.onclick = function(ev){
-        //         url /kh/detail.no
-        //         const noticeNo = this.children[0].innerText;
+        //      tr.onclick = function(ev){
+        //          url /kh/detail.no
+        //          const noticeNo = this.children[0].innerText;
 
-        //         console.loh(noticeNo)
+        //          console.loh(noticeNo)
 
-        //         location.href = "<%=contextPath%>/detail.no?num=" + noticeNo;
-        //     }
+        // location.href = "<%=contextPath%>/detail.no?num=" + noticeNo;
+        //      }
         // }
 
         $(function(){

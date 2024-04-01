@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.notice.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.vo.Member;
-import com.kh.member.service.MemberService;
+import com.kh.notice.service.NoticeService;
 
 /**
- * Servlet implementation class MemberPwdUpdateController
+ * Servlet implementation class NoticeDeleteController
  */
-@WebServlet("/pwdUpdate.me")
-public class MemberPwdUpdateController extends HttpServlet {
+@WebServlet("/delete.no")
+public class NoticeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberPwdUpdateController() {
+    public NoticeDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,14 +28,22 @@ public class MemberPwdUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//데이터 가져오기
+		int noticeNo = Integer.parseInt(request.getParameter("num"));
 		
-		request.setCharacterEncoding("UTF-8");
+		//delete문 실행하기 service -> deleteNotice();
+		int result = new NoticeService().deleteNotice(noticeNo);
 		
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		String updatePwd = request.getParameter("updatePwd");
+		//성공시 -> /kh/list.no
+		//실패시 -> 에러페이지
+		if (result > 0) {
+			request.setAttribute("alertMsg", "공지사항이 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.no");
+		} else {
+			request.setAttribute("errorMsg", "삭제에 실패하였습니다.");
+			request.getRequestDispatcher("view/common/errorPage.jsp").forward(request, response);
+		}
 		
-		Member updateMem = new MemberService().updatePwdMember(userId, userPwd, updatePwd);
 	}
 
 	/**
