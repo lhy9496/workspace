@@ -15,6 +15,13 @@
         margin: auto;
         margin-top: 50px;
     }
+    .outer table {
+            border: 1px solid white;
+            border-collapse: collapse;
+    }
+    .outer > table tr, .outer > table td{
+        border: 1px solid white;
+    }
 </style>
 </head>
 <body>

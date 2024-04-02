@@ -1,13 +1,17 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.Board;
 import com.kh.board.service.BoardService;
+import com.kh.common.vo.PageInfo;
 
 /**
  * Servlet implementation class BoardListController
@@ -59,7 +63,7 @@ public class BoardListController extends HttpServlet {
 		 *  101			10		=> 10.1		11
 		 *  105			10		=> 10.5		11
 		 *  
-		 * 총 게시글 갯수 / boardLimit => 올림치러
+		 * 총 게시글 갯수 / boardLimit => 올림처리
 		 */
 		maxPage = (int)Math.ceil((double)listCount/boardLimit);
 		
@@ -98,7 +102,18 @@ public class BoardListController extends HttpServlet {
 		
 		endPage = startPage + pageLimit - 1;
 		
+		//maxPage가 endPage에 해당하는 숫자보다 작을 경우
 		endPage = endPage > maxPage ? maxPage : endPage;
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		
+		ArrayList<Board> list = new BoardService().selectList(pi);
+		System.out.println(pi);
+		System.out.println(list);
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
 	}
 
 	/**
