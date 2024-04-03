@@ -100,7 +100,7 @@ public class BoardInsertController extends HttpServlet {
 			
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				at = new Attachment();
-				at.setOrginName(multiRequest.getOriginalFileName("upfile"));
+				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
 				at.setChangeName(multiRequest.getFilesystemName("upfile"));
 				at.setFilePath("resources/board_upfile/");
 			}

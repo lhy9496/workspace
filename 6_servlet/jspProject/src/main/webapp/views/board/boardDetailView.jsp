@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.board.model.vo.Board" %>
+<%@ page import="com.kh.board.model.vo.Board, com.kh.board.model.vo.Attachment" %>
     
 <%
 	Board b = (Board)request.getAttribute("board");
 	//글번호, 카테고리명, 제목 등등
+	
+	Attachment at = (Attachment)request.getAttribute("attachment");
+	//없을 수도 있음 = null
+	//있다면 파일번호, 원본명, 수정명, 저장경로
 %>
 <!DOCTYPE html>
 <html>
@@ -60,10 +64,13 @@
             <tr>
                 <th>첨부파일</th>
                 <td colspan="3">
+                <%if(at == null) {%>
                     <!-- 첨부파일 없음 -->
-                    <!-- 첨부파일이 없습니다. -->
-                    <!-- 첨부파일 있음 -->
-                    <a download="첨부파일1" href="https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png">회원 아이콘</a>
+                    첨부파일이 없습니다.
+                <% } else { %>
+                    <!-- 첨부파일 있음 /kh/resources/board_upfile/ -->
+                    <a download="<%=at.getOriginName() %>" href="<%=contextPath%>/<%=at.getFilePath() + at.getChangeName()%>"><%=at.getOriginName() %></a>
+                <% } %>
                 </td>
             </tr>
         </table>
@@ -72,7 +79,7 @@
         <div align="center">
             <a href="<%=contextPath %>/list.bo?cpage=1" class="btn btn-sm btn-secondary">목록가기</a>
             <%if(loginUser != null && loginUser.getUserId().equals(b.getBoardWriter())) {%>
-            <a href="" class="btn btn-sm btn-warning">수정하기</a>
+            <a href="<%=contextPath %>/updateForm.bo?bno=<%=b.getBoardNo()%>" class="btn btn-sm btn-warning">수정하기</a>
             <a href="" class="btn btn-sm btn-danger">삭제하기</a>
             <%} %>
         </div>

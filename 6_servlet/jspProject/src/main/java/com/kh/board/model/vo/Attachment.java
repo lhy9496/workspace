@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Attachment {
 	private int fileNo;
 	private int refBoardNo;
-	private String orginName;
+	private String originName;
 	private String changeName;
 	private String filePath;
 	private Date uploadDate;
@@ -16,12 +16,12 @@ public class Attachment {
 		super();
 	}
 	
-	public Attachment(int fileNo, int refBoardNo, String orginName, String changeName, String filePath,
+	public Attachment(int fileNo, int refBoardNo, String originName, String changeName, String filePath,
 			Date uploadDate, int fileLevel, String status) {
 		super();
 		this.fileNo = fileNo;
 		this.refBoardNo = refBoardNo;
-		this.orginName = orginName;
+		this.originName = originName;
 		this.changeName = changeName;
 		this.filePath = filePath;
 		this.uploadDate = uploadDate;
@@ -41,11 +41,11 @@ public class Attachment {
 	public void setRefBoardNo(int refBoardNo) {
 		this.refBoardNo = refBoardNo;
 	}
-	public String getOrginName() {
-		return orginName;
+	public String getOriginName() {
+		return originName;
 	}
-	public void setOrginName(String orginName) {
-		this.orginName = orginName;
+	public void setOriginName(String orginName) {
+		this.originName = orginName;
 	}
 	public String getChangeName() {
 		return changeName;
@@ -79,7 +79,7 @@ public class Attachment {
 	}
 	@Override
 	public String toString() {
-		return "Attatchment [fileNo=" + fileNo + ", refBoardNo=" + refBoardNo + ", orginName=" + orginName
+		return "Attatchment [fileNo=" + fileNo + ", refBoardNo=" + refBoardNo + ", originName=" + originName
 				+ ", changeName=" + changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate
 				+ ", fileLevel=" + fileLevel + ", status=" + status + "]";
 	}

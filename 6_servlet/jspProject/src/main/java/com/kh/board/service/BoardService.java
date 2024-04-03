@@ -81,4 +81,47 @@ public class BoardService {
 		
 		return result1 * result2;
 	}
+	
+	public Attachment selectAttachment(int boardNo) {
+		Connection conn = getConnection();
+		Attachment at = new BoardDao().selectAttachment(conn, boardNo);
+		
+		close(conn);
+		
+		return at;
+	}
+	
+	public Board selectBoard(int boardNo) {
+		Connection conn = getConnection();
+		Board b = new BoardDao().selectBoard(conn, boardNo);
+		
+		close(conn);
+		
+		return b;
+	}
+	
+	public int updateBoard(Attachment at, Board b) {
+		Connection conn = getConnection();
+		
+		BoardDao bDao = new BoardDao();
+		
+		int result1 = bDao.updateBoard(conn, b);
+		int result2 = 1;
+		
+		if(at != null) {
+			if(at.getFileNo() != 0) {
+				result2 = bDao.updateAttachment(conn, at);
+			} else {
+				result2 = bDao.insertNewAttachment(conn, at);
+			}
+		}
+		if (result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1 * result2;
+	}
 }
