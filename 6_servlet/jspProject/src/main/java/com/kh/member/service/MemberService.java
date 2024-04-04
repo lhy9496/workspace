@@ -83,4 +83,19 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		int result = new MemberDao().idCheck(conn, checkId);
+		
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 }

@@ -45,7 +45,7 @@
 
         <% if( loginUser != null){%>
             <!-- 로그인한 사용자일 때 -->
-            <div align="right" style="width: 850px; margin-bottom: 4px;">
+            <div align="right" style="width: 850px; margin-bottom: 4px; margin: auto;">
                 <a href="<%=contextPath %>/enrollForm.bo" class="btn btn-sm btn-secondary">글쓰기</a>
             </div>
         <% } %>
@@ -118,5 +118,8 @@
         	<%} %>
         </div>
     </div>
+    <script>
+    
+    </script>
 </body>
 </html>

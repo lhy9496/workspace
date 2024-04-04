@@ -82,4 +82,9 @@
 		WHERE USER_ID = ?
 		  AND USER_PWD = ?
 	</entry>
+	<entry key="idCheck">
+		SELECT COUNT(*) "COUNT"
+		  FORM MEMBER
+		 WHERE USER_ID = ?
+	</entry>
 </properties>

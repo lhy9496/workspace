@@ -1,5 +1,10 @@
+<%@page import="com.kh.board.model.vo.Board, java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list"); 
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,15 +50,24 @@
         <br>
         <h2 align="center">사진게시판</h2>
         <br>
-
-        <div class="list-area">
-            <div class="thumbnail" align="center">
-                <img src="" alt="썸네일" width="200px" height="150px">
-                <p>
-                    <span>제목</span> <br>
-                    조회수 : 70
-                </p>
+		
+		<% if( loginUser != null){%>
+            <!-- 로그인한 사용자일 때 -->
+            <div align="right" style="width: 850px; margin-bottom: 4px;">
+                <a href="<%=contextPath %>/enrollForm.th" class="btn btn-sm btn-secondary">글쓰기</a>
             </div>
+        <% } %>
+        
+        <div class="list-area">
+        	<%for (Board b : list){%>
+	            <div class="thumbnail" align="center">
+	                <img src="<%=contextPath %>/<%=b.getTitleImg() %>" width="200px" height="150px">
+	                <p>
+	                    <span>No. <%=b.getBoardNo() %> <%=b.getBoardTitle() %></span> <br>
+	                    조회수 : <%=b.getCount() %>
+	                </p>
+	            </div>
+            <%} %>
         </div>
 	</div>
 </body>

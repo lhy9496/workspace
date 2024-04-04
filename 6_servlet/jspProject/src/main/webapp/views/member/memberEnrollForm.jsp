@@ -31,7 +31,7 @@
                 <tr>
                     <td>* 아이디</td>
                     <td><input type="text" name="userId" maxlength="12" required></td>
-                    <td><button type="button">중복확인</button></td>
+                    <td><button type="button" onclick="idCheck()">중복확인</button></td>
                 </tr>
                 <tr>
                     <td>* 비밀번호</td>
@@ -103,6 +103,71 @@
                 alert("비밀번호가 일치하지 않습니다.")
                 return false;
             }
+        }
+        
+        function idCheck(){
+        	//중복 확인 버튼 클릭 시 사용자가 입력한 아이디값을 서버에 보내서 조회요청(존재하는 아이디 여부 확인)
+        	//1) 사용불가 => alert 메시지 출력(사용할 수 없는 아이디), 다시 입력
+        	//2) 사용 가능 => 진짜 사용할 것인지 여부 확인
+        	//				O => 아이디 수정 못하도록 회원가입 버튼 활성화
+        	//				X => 다시 입력 유도
+        	
+        	const idInput = document.querySelector("#enroll-form input[name=userID]");
+            console.log(idInput.value)
+
+            //idInput.value 값을 서버로 보낼 ajax 사용
+            
+
+            //$.ajax()
+            /**
+             * $.ajax({
+             *      type : 전송타입 GET | POST,
+             *      url : 어디로 요청을 보낼지
+             *      data : {key : value} -> 어떤 데이터를 포함해서 보낼지
+             *      success : function(){} -> 성공시 실행되는 함수
+             *      error : function(){} ->실패시 실행되는 함수
+             * })
+             *      
+             * */
+            
+            console.log("ajax 출발")
+            $.ajax({
+                type : "GET",
+                url: "idCheck.me",
+                data: {
+                    checkId : idInput.value
+                },
+                success: function(res){
+                    console.log("ajax 응답도착")
+                    console.log("성공 : ", res)
+                },
+                error: function(err){
+                    console.log("실패 : ", err)
+                }
+            })
+
+            console.log("ajax 이후 코드")
+
+        //     let data = {
+        //     type : "GET",
+        //     url: "idCheck.me",
+        //     data: {
+        //         checkId : idInput.value
+        //     },
+        //     success: function(res){
+        //         console.log("성공 : ", res)
+        //     },
+        //     error: function(err){
+        //         console.log("실패 : ", err)
+        //     }
+        // }
+        // $.ajax(data)
+        // function ajax(data){
+        //     XMLHttpRequest -> 통신
+        //     성공
+        //     result
+        //     data.success(result);
+        // }
         }
     </script>
 </body>
