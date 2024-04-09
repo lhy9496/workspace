@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.service.MemberService;
+import com.kh.board.model.vo.Reply;
+import com.kh.board.service.BoardService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxCheckController
+ * Servlet implementation class AjaxReplyInsertController
  */
-@WebServlet("/idCheck.me")
-public class AjaxCheckController extends HttpServlet {
+@WebServlet("/rinsert.bo")
+public class AjaxReplyInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxCheckController() {
+    public AjaxReplyInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,16 +30,20 @@ public class AjaxCheckController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
-		String checkId = request.getParameter("checkId");
+		String replyContent = request.getParameter("content");
+		int boardNo = Integer.parseInt(request.getParameter("bno"));
+		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		
-		int count = new MemberService().idCheck(checkId);
+		Reply r = new Reply();
+		r.setReplyContent(replyContent);
+		r.setRefBoardNo(boardNo);
+		r.setReplyWriter(String.valueOf(userNo));
 		
-		if (count > 0) {// 중복 아이디 있음
-			response.getWriter().print("NNNNN");
-		} else {// 중복 아이디 없음
-			response.getWriter().print("NNNNY");
-		}
+		int result = new BoardService().insertReply(r);
+		
+		response.getWriter().print(result);
 	}
 
 	/**

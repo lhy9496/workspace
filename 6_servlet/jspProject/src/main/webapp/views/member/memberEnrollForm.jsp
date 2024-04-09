@@ -88,7 +88,7 @@
             <br><br>
 
             <div align="center">
-                <button type="submit" onclick="return checkPwd();">회원가입</button>
+                <button type="submit" onclick="return checkPwd();" disabled>회원가입</button>
                 <button type="reset">초기화</button>
             </div>
         </form>
@@ -137,9 +137,18 @@
                 data: {
                     checkId : idInput.value
                 },
-                success: function(res){
-                    console.log("ajax 응답도착")
-                    console.log("성공 : ", res)
+                success: function(result){
+                    if(ressult = "NNNNY"){
+                    	if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+                            //아이디 수정을 막고 회원가입 버튼 활성
+                    		idInput.setAttribute("readOnly", true);
+                    		const submitBtn = document.queryselector()
+                            submitBtn.removeAttribute("disabled");
+                    	} else {
+                    		alert("사용불가능한 아이디입니다.")
+                            idInput.focus();
+                    	}
+                    }
                 },
                 error: function(err){
                     console.log("실패 : ", err)

@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.common;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.service.MemberService;
-
 /**
- * Servlet implementation class AjaxCheckController
+ * Servlet implementation class AjaxTextController
  */
-@WebServlet("/idCheck.me")
-public class AjaxCheckController extends HttpServlet {
+@WebServlet("/jqAjax.do")
+public class AjaxTextController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxCheckController() {
+    public AjaxTextController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +27,6 @@ public class AjaxCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String checkId = request.getParameter("checkId");
-		
-		int count = new MemberService().idCheck(checkId);
-		
-		if (count > 0) {// 중복 아이디 있음
-			response.getWriter().print("NNNNN");
-		} else {// 중복 아이디 없음
-			response.getWriter().print("NNNNY");
-		}
 	}
 
 	/**

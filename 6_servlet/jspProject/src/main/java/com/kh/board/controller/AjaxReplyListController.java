@@ -1,25 +1,29 @@
-package com.kh.member.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.service.MemberService;
+import com.google.gson.Gson;
+import com.kh.board.model.vo.Reply;
+import com.kh.board.service.BoardService;
 
 /**
- * Servlet implementation class AjaxCheckController
+ * Servlet implementation class AjaxReplyListController
  */
-@WebServlet("/idCheck.me")
-public class AjaxCheckController extends HttpServlet {
+@WebServlet("/rlist.bo")
+public class AjaxReplyListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxCheckController() {
+    public AjaxReplyListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,16 +32,12 @@ public class AjaxCheckController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int boardNo = Integer.parseInt(request.getParameter("bno"));
 		
-		String checkId = request.getParameter("checkId");
+		ArrayList<Reply> list = new BoardService().selectReplyList(boardNo);
 		
-		int count = new MemberService().idCheck(checkId);
-		
-		if (count > 0) {// 중복 아이디 있음
-			response.getWriter().print("NNNNN");
-		} else {// 중복 아이디 없음
-			response.getWriter().print("NNNNY");
-		}
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**
