@@ -36,6 +36,18 @@ public class MemberController {
 	 * 스프링컨테이너가 해당 메소드를 호출시 자동으로 객체생성해서 매개변수로 주입해준다.
 	 */
 	
+//	@RequestMapping("login.me")
+//	public String loginMember(HttpServletRequest request) {
+//		String userId = request.getParameter("userId");
+//		String userPwd = request.getParameter("userPwd");
+//		
+//		System.out.println("userId : " + userId);
+//		System.out.println("userPwd : " + userPwd);
+//		
+//		return "main";
+//		///WEB-INF/views/main.jsp
+//	}
+	
 	/*
 	 * 2. @RequestParam 어노테이션
 	 * request.getParameter("키")로 밸류를 추출하는 역할 대신해주는 어노테이션
@@ -44,6 +56,16 @@ public class MemberController {
 	 * 
 	 * @RequestParam 생략 가능
 	 */
+//	@RequestMapping("login.me")
+//	public String loginMember(@RequestParam(value="userId", defaultValue="testId") String id,@RequestParam String userPwd) {
+//		
+//		System.out.println("userId : " + id);
+//		System.out.println("userPwd : " + userPwd);
+//		
+//		return "main";
+//		///WEB-INF/views/main.jsp
+//	}
+	
 	
 	/*
 	 * 3. 커맨드 객체 방식
@@ -77,26 +99,77 @@ public class MemberController {
 	 * 포워딩할 응답뷰로 전달하고자 하는 데이터를 맵형식(k-v)으로 담을 수 있는 영역
 	 * Model객체는 requestScope
 	 * request.setAttribute() -> model.addAttribute()
+	 * 
 	 */
+//	@RequestMapping("login.me")
+//	public String loginMember(Member m, Model model, HttpSession session) {	
+//		Member loginUser = memberService.loginMember(m);
+//		
+//		if(loginUser == null) { //로그인 실패 => 에러문구를 requestScope에 담고 에러페이지로 포워딩
+//			model.addAttribute("errorMsg", "로그인실패");
+//			
+//			// /WEB-INF/views/common/errorPage.jsp
+//			return "/common/errorPage";
+//		} else { // 로그인 성공 => sessionScope에 로그인유저 담아서 메인으로 url재요청
+//			session.setAttribute("loginUser", loginUser);
+//			return "redirect:/";
+//		}
+//	}
 	
+	// 2. 스프링에서 사용하는 ModelAndView 객체 사용
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
+		
+		//암호화 전
+//		Member loginUser = memberService.loginMember(m);
+//		
+//		if (loginUser == null) { //에러 문구를 requestScope에 담고 에러페이지로 포워딩
+//			//model.addAttribute("errorMsg", "로그인 실패");
+//			mv.addObject("errorMsg", "로그인 실패");
+//			
+//			// /WEB-INF/views/common/errorPage.jsp
+//			//return "/common/errorPage";
+//			mv.setViewName("/common/errorPage");
+//		} else { // sessionScope에 로그인 유저를 담아서 메인으로 url 재요청
+//			session.setAttribute("loginUser", loginUser);
+//			//return "redirect:/";
+//			mv.setViewName("redirect:/");
+//		}
+//		return mv;
+//		///WEB-INF/views/main.jsp
+		
+		//암호화 후
+		//Member m의 id => 사용자가 입력한 아이디
+		//			pwd => 사용자가 입력한 pwd(평문)
+		
 		Member loginUser = memberService.loginMember(m);
 		
-		if (loginUser == null) { //에러 문구를 requestScope에 담고 에러페이지로 포워딩
-			//model.addAttribute("errorMsg", "로그인 실패");
-			mv.addObject("errorMsg", "로그인 실패");
+		//loginUser id => 아이디로 db에서 검색해온 id
+		//loginUser pwd => db에 기록된 암호화된 비밀번호
+		
+		//bcryptPasswordEncoder객체의 matches()
+		//matches(평문, 암호문)을 작성하면 내부적으로 복호화작업 후 비교가 이루어짐
+		//두 구문이 일치하면 true, 일치하지 않으면 false를 반환
+		
+		bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd());
+		
+		if(loginUser == null) { // 아이디 없음
+			mv.addObject("errorMsg", "일치하는 아이디를 찾을 수 없습니다.");
 			
-			// /WEB-INF/views/common/errorPage.jsp
-			//return "/common/errorPage";
-			mv.setViewName("/common/errorPage");
-		} else { // sessionScope에 로그인 유저를 담아서 메인으로 url 재요청
+			mv.setViewName("common/errorPage");
+			
+		} else if (!bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
+			//비밀번호 불일치
+			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
+			
+			mv.setViewName("common/errorPage");
+			
+		} else { // 로그인 성공
 			session.setAttribute("loginUser", loginUser);
-			//return "redirect:/";
 			mv.setViewName("redirect:/");
 		}
+		
 		return mv;
-		///WEB-INF/views/main.jsp
 	}
 	
 	@RequestMapping("logout.me")

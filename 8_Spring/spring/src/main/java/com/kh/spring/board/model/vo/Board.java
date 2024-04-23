@@ -14,11 +14,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Board {
-	private String boardNo;
+	private int boardNo;
 	private String boardTitle;
-	private String boardContent;
 	private String boardWriter;
-	private String count;
-	private Date createDate;
+	private String boardContent;
+	private String originName;
+	private String changeName;
+	private int count;
+	private String createDate;
 	private String status;
 }
