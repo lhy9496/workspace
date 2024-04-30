@@ -1,5 +1,6 @@
 package com.kh.spring.member.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -165,6 +166,11 @@ public class MemberController {
 			mv.setViewName("common/errorPage");
 			
 		} else { // 로그인 성공
+			Cookie ck = new Cookie("saveId", loginUser.getUserId());
+			if (saveId == null) {
+				ck.setMaxAge(0);
+			}
+			response.add 
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
 		}
