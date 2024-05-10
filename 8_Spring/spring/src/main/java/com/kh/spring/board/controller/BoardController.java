@@ -1,6 +1,10 @@
 package com.kh.spring.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,7 +31,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping("list.bo")
-	public String selectList(@RequestParam(value="cpage", defaultValue="1") int currnetPage, Model model) {
+	public String selectList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {
 		int boardCount = boardService.selectListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(boardCount, currentPage, 10, 5);
@@ -81,13 +85,46 @@ public class BoardController {
 			b.setOriginName(upfile.getOriginalFilename());
 			b.setChangeName("resources/uploadFiles/" + changeName);
 		}
+		
+		int result = boardService.insertBoard(b);
+		if (result > 0) { // 성공 => list페이지로 이동
+			session.setAttribute("alertMsg", "게시글 작정 성공");
+			return "redirect:list.bo";
+		} else { //실패 
+			model.addAttribute("errorMsg", "게시글 작성 실패");
+			return "common/errorPage";
+		}
 	}
 	
+	//실제 넘어온 파일의 이름을 변경해서 서버에 저장하는 메소드
 	public String saveFile(MultipartFile upfile, HttpSession session) {
 		//파일명 수정 후 서버에 업로드하기("imgFile.jpg => 202404231004305488.jpg")
 		String originName = upfile.getOriginalFilename();
 		
+		//년월일시분초 
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		
+		//5자리 랜덤값
+		int ranNum = (int)(Math.random() * 90000) + 10000;
+		
+		//확장자
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		//수정된 첨부파일명
+		String changeName = currentTime + ranNum + ext;
+		
+		//첨부파일을 저장할 폴더의 물리적 경로(session)
+		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+		
+		try {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return changeName;
 	}
 	
 	@RequestMapping("updateFrom.bo")
@@ -140,4 +177,19 @@ public class BoardController {
 			return "common/errorPage";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("rinsert.bo")
+	public String ajaxInsertReply(Reply r) {
+		//성공했을 때는 success, 실패했을 때 fail
+		
+		return boardService.insertReply(r) > 0 ? "success" : "fail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="topList.bo", produces="application/json; charset=UTF-8")
+	public String ajaxTopBoardList() {
+		return new Gson().toJson(boardService.selectTopBoardList());
+	}
+}
 }

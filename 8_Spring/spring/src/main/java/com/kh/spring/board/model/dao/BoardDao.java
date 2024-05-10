@@ -38,4 +38,16 @@ public class BoardDao {
 	public int updateBoard(SqlSessionTemplate sqlsession, Board b) {
 		return sqlsession.update("boardMapper.updateBoard", b);
 	}
+	
+	public int insertBoard(SqlSessionTemplate sqlsession, Board b) {
+		return sqlsession.insert("boardMapper.insertBoard", b);
+	}
+	
+	public int insertReply(SqlSessionTemplate sqlsession, Reply r) {
+		return sqlsession.insert("boardMapper.insertReply", r);
+	}
+	
+	public ArrayList<Board> selectTopBoardList(SqlSessionTemplate sqlsession){
+		return (ArrayList)sqlsession.selectList("boardMapper.selectTopBoardList");
+	}
 }
