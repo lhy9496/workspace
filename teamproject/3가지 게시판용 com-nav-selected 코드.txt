@@ -1,0 +1,36 @@
+<%@ page session="true" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게시판</title>
+    <script>
+        function boCategory(category) {
+            if (category === 0) {
+                sessionStorage.setItem("selectedCategory", category);
+                location.href = "general.jsp";
+            } else {
+                sessionStorage.setItem("selectedCategory", category);
+                location.href = "others.jsp?category=" + category;
+            }
+        }
+
+        window.onload = function() {
+            var selectedCategory = sessionStorage.getItem("selectedCategory");
+            if (selectedCategory !== null) {
+                document.querySelector('.com-nav-' + selectedCategory).id = "com-nav-selected";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="com-nav">
+        <ul>
+            <li><button class="com-nav-0" onclick="boCategory(0)" style="border-radius: 10px 0 0 10px;">일반</button></li>
+            <li><button class="com-nav-10" onclick="boCategory(10)" value="10">꿀팁</button></li>
+            <li><button class="com-nav-20" onclick="boCategory(20)" value="20">질문</button></li>
+            <li><button class="com-nav-30" onclick="boCategory(30)" value="30" style="border-radius: 0 10px 10px 0;">중고거래</button></li>
+        </ul>
+    </div>
+</body>
+</html>

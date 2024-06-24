@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adminMenubar</title>
+
+    <link rel="stylesheet" href="reset.css">
+
+    <style>
+        main{
+            display: flex;
+            height: 840px;
+        }
+        adminSide{
+            width: 220px;
+            height: 840px;
+            border-right: 1px solid;
+        }
+        #side-header{
+            height: 120px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid ;
+        }
+        #side-header img{
+            margin: 10px 0 15px;
+        }
+        #side-list div{
+            height: 30px;
+            padding: 5px 0px 0px 5px;
+        }
+        #side-list-head{
+            background-color: #AFA8A8;
+        }
+        #side-list-selected{
+            background-color: #EEEEEE;
+            color: #0089FF;
+        }
+    </style>
+</head>
+<body>
+    
+    <main>
+        <div id="adminSide">
+            <div id="side-header">
+                <img src="icon_category.png" alt="카테고리 관리 아이콘">
+                <p>카테고리 관리</p>
+            </div>
+            <div id="side-list">
+                <div id="side-list-head">카테고리 관리</div>
+                <div id="side-list-selected">카테고리 관리</div>
+                <div>카테고리 순위</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

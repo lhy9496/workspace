@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,19 +23,25 @@ import com.kh.spring.board.service.BoardService;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class BoardController {
 	
-	@Autowired
+	@Autowired 
 	private BoardService boardService;
+	
+//	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@RequestMapping("list.bo")
 	public String selectList(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {
 		int boardCount = boardService.selectListCount();
+		//logger.info("list.bo 실행");
 		
 		PageInfo pi = Pagination.getPageInfo(boardCount, currentPage, 10, 5);
 		ArrayList<Board> list = boardService.selectList(pi);
-
+		
 		model.addAttribute("list", list);
 		model.addAttribute("pi", pi);
 		
@@ -53,7 +58,7 @@ public class BoardController {
 			model.addAttribute("b", b);
 			
 			return "board/boardDetailView";
-
+			
 		} else {
 			model.addAttribute("errorMsg", "게시글 조회 실패");
 			return "common/errorPage";
@@ -78,7 +83,7 @@ public class BoardController {
 		System.out.println(b);
 		System.out.println(upfile);
 		
-		//전달된 파일이 있을 경우 => 파일 이름 변경 => 서버 저장 => 원본명, 서버 업로드된 경로를 b 객체에 담기
+		//전달된 파일이 있을 경우 => 파일이름 변경 => 서버에 저장 => 원본명, 서버업로드된 경로를 b객체에 담기
 		if(!upfile.getOriginalFilename().equals("")) {
 			String changeName = saveFile(upfile, session);
 			
@@ -87,10 +92,10 @@ public class BoardController {
 		}
 		
 		int result = boardService.insertBoard(b);
-		if (result > 0) { // 성공 => list페이지로 이동
-			session.setAttribute("alertMsg", "게시글 작정 성공");
+		if (result > 0) { //성공 => list페이지로 이동
+			session.setAttribute("alertMsg", "게시글 작성 성공");
 			return "redirect:list.bo";
-		} else { //실패 
+		} else { //실패 => 에러페이지
 			model.addAttribute("errorMsg", "게시글 작성 실패");
 			return "common/errorPage";
 		}
@@ -127,7 +132,7 @@ public class BoardController {
 		return changeName;
 	}
 	
-	@RequestMapping("updateFrom.bo")
+	@RequestMapping("updateForm.bo")
 	public String updateForm(int bno, Model model) {
 		
 		model.addAttribute("b", boardService.selectBoard(bno));
@@ -139,12 +144,12 @@ public class BoardController {
 		
 		//새로운 첨부파일이 넘어온 경우
 		if(!reupfile.getOriginalFilename().equals("")) {
-			// 기존의 첨부파일이 있을 경우 삭제
+			//기존의 첨부파일이 있다 => 기존의 파일을 삭제
 			if(b.getOriginName() != null) {
 				new File(session.getServletContext().getRealPath(b.getChangeName())).delete();
 			}
 			
-			//새로 넘어온 첨부파일을 서버에 업로드
+			//새로 넘어온 첨부파일을 서버에 업로드 시키기
 			String changeName = saveFile(reupfile, session);
 			
 			b.setOriginName(reupfile.getOriginalFilename());
@@ -154,22 +159,22 @@ public class BoardController {
 		/*
 		 * b에 boardTitle, boardContent
 		 * 
-		 * 1. 새로운 첨부파일 x, 기존 첨부파일 x
-		 * 	=> originName : null, changeName : null
+		 * 1. 새로운 첨부파일 x, 기존첨부파일 x
+		 * 	  => originName : null, changeName : null 
 		 * 
-		 * 2. 새로운 첨부파일 x, 기존 첨부파일 o
-		 * 	=> originName : 기존 첨부파일 이름, changeName : 기존 첨부파일 경로
+		 * 2. 새로운 첨부파일 x, 기존첨부파일 o
+		 * 	  => originName : 기존첨부파일 이름, changeName : 기존첨부파일 경로 
 		 * 
-		 * 3. 새로운 첨부파일 o, 기존 첨부파일 o
-		 * 	=> originName : 새로운 첨부파일 이름, changeName : 새로운 첨부파일 경로
-		 * 
-		 * 4. 새로운 첨부파일 o, 기존 첨부파일 x
-		 * 	=> originName : 새로운 첨부파일 이름, changeName : 새로운 첨부파일 경로
+		 * 3. 새로운 첨부파일 o, 기존첨부파일 o
+		 *    => originName : 새로운첨부파일 이름, changeName : 새로운 첨부파일 경로
+		 *    
+		 * 4. 새로운 첨부파일 o, 기존첨부파일 x
+		 * 	  => originName : 새로운첨부파일,  changeName : 새로운 첨부파일 경로
 		 */
 		
 		int result = boardService.updateBoard(b);
 		
-		if (result > 0 ) { //성공
+		if(result > 0) {//성공
 			session.setAttribute("alertMsg", "게시글 수정 성공");
 			return "redirect:detail.bo?bno=" + b.getBoardNo();
 		} else { //실패
@@ -191,5 +196,4 @@ public class BoardController {
 	public String ajaxTopBoardList() {
 		return new Gson().toJson(boardService.selectTopBoardList());
 	}
-}
 }

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adminMenubar</title>
+
+    <link rel="stylesheet" href="reset.css">
+
+    <style>
+        #adminMenubar-logo{
+            width: 100%;
+            background-color: #2b2b2b;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #adminMenubar-logo h1{
+            margin: 0 15px;
+            line-height: 50px;
+            font-size: 25px;
+            color: #0089FF;
+        }
+
+        #adminMenubar-link ul{
+            margin: 0 16px;
+            line-height: 50px;
+        }
+
+        #adminMenubar-link ul li{
+            display: inline-block;
+            margin: 0 0 0 -1px;
+            border: 1px solid black;
+            border-top: 0;
+            border-bottom: 0;
+            padding: 0 10px;
+            line-height: 50px;
+        }
+        #adminMenubar-link ul li a{
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        #adminMenubar-link ul li a:hover{
+            color: white; 
+        } 
+
+        nav{
+            height: 38px;
+            margin: 0 0 0 -1px;
+            padding: 0 10px;
+            line-height: 38px;
+            background-color: #393b3f;
+            width: 100%;
+            display: flex;
+        }
+
+        nav div{
+            text-decoration: none;
+            color: white;
+            width: 100px;
+            height: 38px;
+            border: 1px solid black;
+            text-align: center;
+            border-top: 0px;
+            border-bottom: 0px;
+            cursor: pointer;
+        }
+
+        nav div a{
+            font-size: 15px;
+            color: white;
+            text-decoration: none;
+            
+        }
+
+        #adminMenubar-link ul #adminMenubar-logout a{
+            color: #fa2828;
+        }
+
+        main{
+            display: flex;
+            height: 840px;
+        }
+        #adminSide{
+            width: 220px;
+            height: 840px;
+            border-right: 1px solid;
+        }
+        #adminMain{
+            height: 840px;     
+        }
+        #side-header{
+            height: 120px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid ;
+        }
+        #side-header img{
+            margin: 10px 0 15px;
+        }
+        #side-list div{
+            height: 30px;
+            padding: 5px 0px 0px 5px;
+        }
+        #side-list-head{
+            background-color: #AFA8A8;
+        }
+        #side-list-selected{
+            background-color: #EEEEEE;
+            color: #0089FF;
+        }
+        #managerOutlist-frame{
+            width: 1600px;
+            margin: 10px 0px 0px 30px
+        }
+        #managerOutlist-title{
+            width: 100%;
+            height: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid black;
+            padding-top: 15px;
+        }
+        #managerOutlist-subtitle{
+            width: 100%;
+            height: 30px;
+            margin-top: 30px;
+            font-size: 17px;
+        }
+        #managerOutlist-1sttable{
+            width: 1600px;
+            margin-bottom: 60px;
+            border-top: 1px solid black;
+        }
+        #managerOutlist-1sttable td, #managerOutlist-1sttable th{
+            border-bottom: 1px solid #AFA8A8;
+            padding-left: 5px;
+            font-size: 15px;
+        }
+        #managerOutlist-1sttable th{
+            width: 100px;
+            height: 40px;
+            text-align: start;
+            background-color: #EEEEEE;
+        }
+        #managerOutlist-1sttable td select{
+            width: 90px;
+            height: 25px;
+        }
+        #managerOutlist-1sttable td input{
+            width: 250px;
+            height: 25px;
+        }
+        #managerOutlist-1sttable td button{
+            height: 35px;
+            border: 1px solid;
+            background-color: white;
+            font-size: 15px;
+
+        }
+        #managerOutlist-2ndtable{
+            width: 1600px;
+            height: 200px;
+            border-top: 1px solid black;
+            margin-bottom: 10px;
+        }
+        #admin-2ndtable-head{
+            background-color: #EEEEEE;
+        }
+        #managerOutlist-2ndtable td{
+            height: 40px;
+            border-left: 1px solid #AFA8A8;
+            border-right: 1px solid #AFA8A8;
+            border-bottom: 1px solid #AFA8A8;
+            text-align: center;
+        }
+        #managerOutlist-2nd button{
+            background-color: white;
+            font-size: 15px;
+            border: 1px solid;
+        }
+        #managerOutlist-2ndbottom{
+            width: 1600px;
+            height: 90px;
+            border-bottom: 1px solid;
+            display: flex;
+        }
+        #managerOutlist-2ndbottom button{
+            width: 75px;
+            height: 30px;
+            margin-right: 5px;
+        }
+        #managerOutlist-2ndbottom div{
+            margin-left: 189px;
+            align-self: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div id="adminMenubar-logo">
+            <h1>Aquaqu</h1>
+            <div id="adminMenubar-link">
+                <ul>
+                    <li>
+                        <a href="">스토어</a>
+                    </li>
+                    <li>
+                        <a href="">관리자 홈</a>
+                    </li>
+                    <li id="adminMenubar-logout">
+                        <a id="logout" href="">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <nav>
+            <div>
+                <a href="">회원 관리</a>
+            </div>
+            <div>
+                <a href="">판매자 관리</a>
+            </div>    
+            <div>
+                <a href="">카데고리 관리</a>
+            </div>
+            <div>
+                <a href="">혜택 관리</a>
+            </div>
+            <div style="background-color: white;">
+                <a href="" style="color: black;">고객지원</a>
+            </div>
+            <div>
+                <a href="">설정</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="adminSide">
+            <div id="side-header">
+                <img src="icon_help.png" alt="고객지원 아이콘">
+                <p>고객지원</p>
+            </div>
+            <div id="side-list">
+                <div id="side-list-head">고객지원</div>
+                <div id="side-list-selected">1:1문의</div>
+                <div>회원 탈퇴내역</div>
+            </div>
+        </div>
+        <div id="adminMain">
+            <div id="managerOutlist-frame">
+                <div id="managerOutlist-title">1:1문의</div>
+                <div id="managerOutlist-1st">
+                    <div id="managerOutlist-subtitle">검색</div>
+                    <table id="managerOutlist-1sttable">
+                        <tr>
+                            <th>검색어</th>
+                            <td>
+                                <select name="category" id="admin-board-category">
+                                    <option value="id">아이디</option>
+                                    <option value="name">회원명</option>
+                                </select>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="height: 70px; border-bottom: 1px solid black; text-align: center;">
+                                <button style="width: 60px;">검색</button>
+                                <button style="width: 75px;">초기화</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="managerOutlist-2nd">
+                    <div id="managerOutlist-subtitle"></div>
+                    <table id="managerOutlist-2ndtable">
+                        <tr>
+                            <td colspan="8" style="font-size: 15px; border-bottom: 1px solid black; border-left: 0px; border-right: 0px; text-align: start;">총 탈퇴회원 수 : 5</td>
+                        </tr>
+                        <tr id="admin-2ndtable-head">
+                            <td style="width: 40px; border-left: 0px;"><input type="checkbox"></td>
+                            <td style="width: 80px;">번호</td>
+                            <td style="width: 120px;">회원명</td>
+                            <td style="width: 120px;">아이디</td>
+                            <td style="width: 160px;">탈퇴일시</td>
+                            <td style="border-right: 0px;">탈퇴사유</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>5</td>
+                            <td>홍길동</td>
+                            <td>qwqw11</td>
+                            <td>2024-05-14</td>
+                            <td>사이트가 너무 불친절해요.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>4</td>
+                            <td>고길동</td>
+                            <td>qwqw22</td>
+                            <td>2024-05-14</td>
+                            <td>사이트가 너무 불친절해요.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>3</td>
+                            <td>최길동</td>
+                            <td>qwqw33</td>
+                            <td>2024-05-14</td>
+                            <td>사이트가 너무 불친절해요.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>2</td>
+                            <td>나길동</td>
+                            <td>qwqw44</td>
+                            <td>2024-05-14</td>
+                            <td>사이트가 너무 불친절해요.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>1</td>
+                            <td>조길동</td>
+                            <td>qwqw55</td>
+                            <td>2024-05-14</td>
+                            <td>사이트가 너무 불친절해요.</td>
+                        </tr>
+                    </table>
+                    <div id="managerOutlist-2ndbottom">
+                        <button>선택삭제</button>
+                        <div>
+                            <img src="pagingbar.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
